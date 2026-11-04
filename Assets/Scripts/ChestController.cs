@@ -1,8 +1,10 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ChestController : MonoBehaviour
 {
+    public TextMeshProUGUI interactText;
     public int Item = 0;
     private bool isEmpty = false;
     private InputAction interactAction;
@@ -16,7 +18,7 @@ public class ChestController : MonoBehaviour
     {
         if (other.gameObject.name == "Player" && !isEmpty)
         {
-            Debug.Log("Press E to open");
+            interactText.gameObject.SetActive(true);
         }
     }
 
@@ -26,17 +28,13 @@ public class ChestController : MonoBehaviour
         if (other.gameObject.name == "Player" && !isEmpty && action != 0)
         {
             isEmpty = true;
+            interactText.gameObject.SetActive(false);
             Debug.Log("Looted");
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Come back!");
-    }
-
-    void Update()
-    {
-        
+        interactText.gameObject.SetActive(false);
     }
 }
