@@ -8,10 +8,12 @@ public class ChestController : MonoBehaviour
     public int Item = 0;
     private bool isEmpty = false;
     private InputAction interactAction;
+    private Animator animator;
 
     void Start()
     {
         interactAction = InputSystem.actions.FindAction("Interact");
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,6 +31,7 @@ public class ChestController : MonoBehaviour
         {
             isEmpty = true;
             interactText.gameObject.SetActive(false);
+            animator.SetTrigger("TriggerOpen");
             Debug.Log("Looted");
         }
     }
