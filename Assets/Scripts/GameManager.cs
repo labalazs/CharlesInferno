@@ -4,17 +4,20 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject player;
     public GameObject pauseMenu;
     public GameObject gameOverMenu;
     private InputAction pauseAction;
     private float elapsed = 0;
     private bool isRunning = false;
+    private PlayerMovement playerMovement;
 
     private void Start()
     {
         elapsed = 0;
         isRunning = true;
         pauseAction = InputSystem.actions.FindAction("Pause");
+        playerMovement = player.GetComponent<PlayerMovement>();
     }
 
     private void Update()
@@ -47,6 +50,14 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(true);
     }
 
+    public void GameOver()
+    {
+        isRunning = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        gameOverMenu.SetActive(true);
+    }
+
     public void Continue()
     {
         isRunning = true;
@@ -57,6 +68,8 @@ public class GameManager : MonoBehaviour
 
     public void Retry()
     {
+        playerMovement.Respawn();
+        isRunning = true;
         gameOverMenu.SetActive(false);
     }
 

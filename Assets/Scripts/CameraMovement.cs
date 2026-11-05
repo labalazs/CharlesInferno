@@ -11,6 +11,7 @@ public class CameraMovement : MonoBehaviour
     public float distance = 5f;
     public float minVerticalAngle = -30f;
     public float maxVerticalAngle = 60f;
+    public float HorizontalRotation => horizontalRotation;
 
     private float horizontalRotation;
     private float verticalRotation;
@@ -38,5 +39,11 @@ public class CameraMovement : MonoBehaviour
         player.transform.rotation = Quaternion.Euler(0, horizontalRotation, 0);
         cameraPivot.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
         camera.transform.localPosition = new Vector3(0, 0, -distance);
+    }
+
+    public void SetLookDirecton(float yaw, float pitch = 15f)
+    {
+        horizontalRotation = yaw;
+        verticalRotation = Mathf.Clamp(pitch, minVerticalAngle, maxVerticalAngle);
     }
 }

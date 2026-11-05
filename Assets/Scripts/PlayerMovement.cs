@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction runAction;
     private InputAction jumpAction;
     private CharacterController characterController;
+    private CameraMovement cameraMovement;
     private Vector3 moveDirection = Vector3.zero;
     
     private void Start()
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         runAction = InputSystem.actions.FindAction("Sprint");
         jumpAction = InputSystem.actions.FindAction("Jump");
+        cameraMovement = playerCamera.GetComponentInParent<CameraMovement>();
     }
 
     private void Update()
@@ -54,5 +56,14 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Speed", speed);
         animator.SetBool("IsRunning", isRunning);
         characterController.Move(moveDirection * Time.deltaTime);
+    }
+
+    public void Respawn()
+    {
+        characterController.enabled = false;
+        transform.position = GameData.checkpointPosition;
+        characterController.enabled = true;
+        moveDirection = Vector3.zero;
+        cameraMovement.SetLookDirecton(GameData.checkpointYaw);
     }
 }

@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class CheckpointController : MonoBehaviour
 {
-    public TextMeshProUGUI checkpointText;
+    public TextMeshProUGUI CheckpointText;
+    public GameObject Camera;
+    private CameraMovement cameraMovement;
     private float elapsedTime = 0.0f;
     private bool isTriggered = false;
 
@@ -11,6 +13,7 @@ public class CheckpointController : MonoBehaviour
     {
         elapsedTime = 0.0f;
         isTriggered = false;
+        cameraMovement = Camera.GetComponent<CameraMovement>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -18,18 +21,19 @@ public class CheckpointController : MonoBehaviour
         if (other.gameObject.name == "Player" && !isTriggered)
         {
             isTriggered = true;
-            checkpointText.gameObject.SetActive(true);
+            GameData.Set(other.gameObject.transform.position, cameraMovement.HorizontalRotation, -5);
+            CheckpointText.gameObject.SetActive(true);
         }
     }
 
     private void Update()
     {
-        if (checkpointText.gameObject.activeInHierarchy)
+        if (CheckpointText.gameObject.activeInHierarchy)
         {
             elapsedTime += Time.deltaTime;
             if (elapsedTime >= 2)
             {
-                checkpointText.gameObject.SetActive(false);
+                CheckpointText.gameObject.SetActive(false);
             }
         }
     }
