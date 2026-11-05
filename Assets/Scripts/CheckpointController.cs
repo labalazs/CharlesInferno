@@ -5,6 +5,7 @@ public class CheckpointController : MonoBehaviour
 {
     public TextMeshProUGUI CheckpointText;
     public GameObject Camera;
+    public GameObject Lava;
     private CameraMovement cameraMovement;
     private float elapsedTime = 0.0f;
     private bool isTriggered = false;
@@ -21,7 +22,7 @@ public class CheckpointController : MonoBehaviour
         if (other.gameObject.name == "Player" && !isTriggered)
         {
             isTriggered = true;
-            GameData.Set(other.gameObject.transform.position, cameraMovement.HorizontalRotation, -5);
+            GameData.Set(other.gameObject.transform.position, cameraMovement.HorizontalRotation, Lava.transform.position.y);
             CheckpointText.gameObject.SetActive(true);
         }
     }

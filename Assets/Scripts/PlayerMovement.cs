@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
         runAction = InputSystem.actions.FindAction("Sprint");
         jumpAction = InputSystem.actions.FindAction("Jump");
         cameraMovement = playerCamera.GetComponentInParent<CameraMovement>();
+        GameData.checkpointPosition = transform.position;
+        GameData.checkpointYaw = cameraMovement.HorizontalRotation;
     }
 
     private void Update()
