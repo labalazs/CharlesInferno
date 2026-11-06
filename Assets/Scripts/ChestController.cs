@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,7 +6,8 @@ using UnityEngine.InputSystem;
 public class ChestController : MonoBehaviour
 {
     public TextMeshProUGUI interactText;
-    public int Item = 0;
+    public AbilityType ability = AbilityType.None;
+    public static event Action<AbilityType> onAbilityCollected;
     private bool isEmpty = false;
     private InputAction interactAction;
     private Animator animator;
@@ -32,7 +34,7 @@ public class ChestController : MonoBehaviour
             isEmpty = true;
             interactText.gameObject.SetActive(false);
             animator.SetTrigger("TriggerOpen");
-            Debug.Log("Looted");
+            onAbilityCollected?.Invoke(ability);
         }
     }
 
