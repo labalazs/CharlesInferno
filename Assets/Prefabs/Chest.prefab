@@ -55,7 +55,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 2
-  m_Center: {x: 0.75, y: 0.35, z: 0.375}
+  m_Center: {x: 0, y: 0.35, z: 0}
 --- !u!114 &3320539327949311468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChestController
   interactText: {fileID: 0}
-  Item: 0
+  ability: 0
 --- !u!1 &1407028719853330634
 GameObject:
   m_ObjectHideFlags: 0

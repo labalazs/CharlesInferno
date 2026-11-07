@@ -28,7 +28,7 @@
                     "name": "Attack",
                     "type": "Button",
                     "id": "6c2ab1b8-8984-453a-af3d-a3c78ae1679a",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -118,6 +118,15 @@
                     "name": "Ability3",
                     "type": "Button",
                     "id": "41564af7-dfe1-4bbe-8877-b928415f1f07",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Grapple",
+                    "type": "Button",
+                    "id": "e0c56e4c-1cd0-4537-b05c-63d9a17073e7",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -562,6 +571,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Ability3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e6f29d4c-945a-4870-b093-1abe5de7f52f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Grapple",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

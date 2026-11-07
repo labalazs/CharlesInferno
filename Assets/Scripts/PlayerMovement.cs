@@ -11,6 +11,19 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = 9.81f;
     public int allowedJumps = 1;
     public int remainingJumps = 1;
+    public bool movementLocked = false;
+    public float verticalVelocity
+    {
+        get
+        {
+            return moveDirection.y;
+        }
+        set
+        {
+            moveDirection.y = value;
+        }
+    }
+
     private InputAction moveAction;
     private InputAction runAction;
     private InputAction jumpAction;
@@ -32,6 +45,10 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         if (characterController == null)
+        {
+            return;
+        }
+        if (movementLocked)
         {
             return;
         }
