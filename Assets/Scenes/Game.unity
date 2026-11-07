@@ -1752,6 +1752,8 @@ GameObject:
   - component: {fileID: 763813390}
   - component: {fileID: 763813389}
   - component: {fileID: 763813391}
+  - component: {fileID: 763813393}
+  - component: {fileID: 763813392}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1816,6 +1818,8 @@ MonoBehaviour:
   runSpeed: 12
   jumpPower: 7
   gravity: 10
+  allowedJumps: 1
+  remainingJumps: 1
 --- !u!143 &763813390
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1853,6 +1857,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3504dee2e7ea746afb2556b546a52f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
+--- !u!114 &763813392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763813385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b6a0bfa8a593104683d58f6187d1a6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoubleJumpAbility
+  movement: {fileID: 763813389}
+--- !u!114 &763813393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763813385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e83be6344e5fb9e4a9dc9dfc13b02013, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NoAbility
 --- !u!1001 &766829712
 PrefabInstance:
   m_ObjectHideFlags: 0

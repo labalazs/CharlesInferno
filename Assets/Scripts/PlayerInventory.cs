@@ -13,9 +13,18 @@ public class PlayerInventory : MonoBehaviour
     {
         AbilityType.None
     };
+    private readonly Dictionary<AbilityType, Ability> abilities = new Dictionary<AbilityType, Ability>();
     private InputAction ability1Action;
     private InputAction ability2Action;
     private InputAction ability3Action;
+
+    private void Awake()
+    {
+        foreach (Ability ability in GetComponents<Ability>())
+        {
+            abilities[ability.Type] = ability;
+        }
+    }
 
     private void Start()
     {
@@ -71,7 +80,14 @@ public class PlayerInventory : MonoBehaviour
         {
             return;
         }
+        if (selectedIndex > 0)
+        {
+            abilities[slots[selectedIndex]].OnUnequip();
+            //Debug.Log($"Unequip called: {slots[selectedIndex]}");
+        }
         selectedIndex = index;
+        abilities[slots[selectedIndex]].OnEquip();
+        //Debug.Log($"Equip called: {slots[selectedIndex]}");
         changed?.Invoke();
     }
 }

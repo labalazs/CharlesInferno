@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed = 12f;
     public float jumpPower = 7f;
     public float gravity = 9.81f;
+    public int allowedJumps = 1;
+    public int remainingJumps = 1;
     private InputAction moveAction;
     private InputAction runAction;
     private InputAction jumpAction;
@@ -35,25 +37,29 @@ public class PlayerMovement : MonoBehaviour
         }
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
         bool isRunning = runAction.ReadValue<float>() == 1;
-        bool isJumping = jumpAction.ReadValue<float>() == 1;
+        bool isJumping = jumpAction.WasPressedThisFrame();
         float currentXSpeed = (isRunning ? runSpeed : walkSpeed) * moveValue.x;
         float currentYSpeed = (isRunning ? runSpeed : walkSpeed) * moveValue.y;
         float movementDirectionY = moveDirection.y;
         moveDirection = (transform.right * currentXSpeed) + (transform.forward * currentYSpeed);
         float speed = Mathf.Abs(moveDirection.magnitude);
-        if (isJumping && characterController.isGrounded)
+        if (isJumping && (characterController.isGrounded || remainingJumps > 1))
         {
-            animator.SetBool("IsJumping", true);
-            moveDirection.y = jumpPower;
+            animator.SetTrigger("TriggerJump");
+            moveDirection.y += jumpPower;
+            remainingJumps--;
         }
         else
         {
-            animator.SetBool("IsJumping", false);
             moveDirection.y = movementDirectionY;
         }
         if (!characterController.isGrounded)
         {
             moveDirection.y -= gravity * Time.deltaTime;
+        }
+        else
+        {
+            remainingJumps = allowedJumps;
         }
         animator.SetFloat("Speed", speed);
         animator.SetBool("IsRunning", isRunning);
