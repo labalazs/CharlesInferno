@@ -78,6 +78,8 @@ public class GameManager : MonoBehaviour
         lavaController.Reset();
         isRunning = true;
         Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         gameOverMenu.SetActive(false);
     }
 
