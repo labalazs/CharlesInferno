@@ -8,6 +8,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
+    public void Highscores()
+    {
+        SceneManager.LoadScene("Highscores");
+    }
+
     public void QuitGame()
     {
         Application.Quit();

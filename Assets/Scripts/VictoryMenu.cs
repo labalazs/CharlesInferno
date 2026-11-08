@@ -10,6 +10,7 @@ public class VictoryMenu : MonoBehaviour
     {
         float elapsed = GameData.elapsed;
         timeText.text = $"Time: {(int)(elapsed / 60):00}:{(elapsed % 60):00.0}";
+        HighscoreManager.Add(elapsed);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
