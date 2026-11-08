@@ -65,7 +65,6 @@ public class GameManager : MonoBehaviour
 
     public void Continue()
     {
-        Debug.Log("Clicked");
         isRunning = true;
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
