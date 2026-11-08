@@ -88,7 +88,6 @@ ProjectSettings/
 | `CheckpointController` | Saves the respawn state when the player reaches a checkpoint |
 | `GameData` | Static holder of the checkpoint data |
 | `LavaRise` | Moves the lava upwards and detects the player touching it |
-| `DisappearingPlatform` | Timed disappearing and reappearing platforms |
 
 ## Credits
 
