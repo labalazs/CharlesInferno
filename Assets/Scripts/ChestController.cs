@@ -8,11 +8,18 @@ public class ChestController : MonoBehaviour
     public TextMeshProUGUI interactText;
     public AbilityType ability = AbilityType.None;
     public static event Action<AbilityType> onAbilityCollected;
+    public AudioClip openSound;
+    private AudioSource audioSource;
     private bool isEmpty = false;
     private InputAction interactAction;
     private Animator animator;
 
-    void Start()
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    private void Start()
     {
         interactAction = InputSystem.actions.FindAction("Interact");
         animator = GetComponentInChildren<Animator>();
@@ -33,6 +40,7 @@ public class ChestController : MonoBehaviour
         {
             isEmpty = true;
             interactText.gameObject.SetActive(false);
+            audioSource.PlayOneShot(openSound);
             animator.SetTrigger("TriggerOpen");
             onAbilityCollected?.Invoke(ability);
         }

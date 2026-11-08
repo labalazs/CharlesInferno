@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class LavaRiseController : MonoBehaviour
 {
-    public float riseSpeed = 0.3f;
-    public float startDelay = 5f;
+    public float riseSpeed = 0.15f;
+    public float startDelay = 3f;
     public GameObject player;
     public GameObject gameManager;
 
